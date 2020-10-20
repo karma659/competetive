@@ -1,0 +1,38 @@
+ // learnt bisection method to find the root of an equation
+ //also %0.4lf   is double in scanf
+ 
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int p,q,r,s,t,u;
+double f(double x)
+{
+    return p*exp(-x) + q*sin(x) + r*cos(x) + s*tan(x) +  t*x*x+u ;
+}
+
+int main() {
+  while(scanf("%d %d %d %d %d %d/n",&p,&q,&r,&s,&t,&u)!=EOF) {
+     if(f(0)*f(1)>0){
+	 
+           printf("No solution\n");
+       }
+      else
+   {
+double hi=1,lo=0,x;
+
+    while(hi-lo>(1e-7))
+    {
+    	x=(lo+hi)/2;
+       if(f(x)==0)
+          break;   
+        else if(f(x)*f(lo)<=0)
+             hi=x;    
+		else
+		   lo=x;	 
+   	
+	}
+	printf("%.4lf\n",x);
+  }}
+  return 0;
+}
+
