@@ -1,0 +1,57 @@
+//recursive memo based soln giving tle
+//try bottom up
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int price[25][25];
+int memo[210][25];
+int M,C;
+int solve(int m,int c);
+int main()
+{
+	int N;
+while(scanf("%d",&N))
+{
+int sum=0;
+scanf("%d %d",&M,&C);
+for(int i=0;i<C;i++)
+{
+
+scanf("%d",&price[i][0]);	
+    for(int j=1;j<=price[i][0];j++)
+     {
+     	scanf("%d",&price[i][j]);
+	 }
+}
+	memset(memo,-1,sizeof(memo));
+	
+	sum=solve(M,0);
+	if(sum<0)
+	   printf("no solution");
+	else
+	printf("%d\n",sum);
+}
+return 0;
+}
+int solve(int m,int c)
+{
+	if(m<0)
+	   return -1111;
+	
+	if(c==C)
+	   return M-m;
+	
+	if(memo[m][c]!=-1)
+	   return memo[m][c];
+	   
+	   int ans=-1;
+	   for(int i=1;i<=price[c][0];i++)
+	   {
+	   	ans=max(ans,solve(m-price[c][i],c+1));
+	    	memo[m][c]=ans;
+	   }
+	   
+	return memo[m][c]=ans;
+}
+
