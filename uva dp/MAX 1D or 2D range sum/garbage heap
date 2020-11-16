@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+//3d kadane algo
+long long m[28][28][28];
+int main()
+{
+int t;
+cin>>t;
+
+while(t--)
+{
+
+ int A,B,C;
+ cin>>A>>B>>C;
+
+for (int i=0;i<A;++i) for (int j=0;j<B;++j) for (int k=0;k<C;++k) {
+      long long g; cin>>g;
+      if (i>0) g+=m[i-1][j][k];
+      if (j>0) g+=m[i][j-1][k];
+      if (k>0) g+=m[i][j][k-1];
+      if (i>0 && j>0) g-=m[i-1][j-1][k];
+      if (j>0 && k>0) g-=m[i][j-1][k-1];
+      if (i>0 && k>0) g-=m[i-1][j][k-1];
+      if (i>0 && j>0 && k>0) g+=m[i-1][j-1][k-1];
+      m[i][j][k]=g;
+    }
+    
+    long long max_sum=-100000000000;
+    for (int i=0;i<A;++i) for (int j=0;j<B;++j) for (int k=0;k<C;++k) 
+    for (int i1=i;i1<A;++i1) for (int j1=j;j1<B;++j1) for (int k1=k;k1<C;++k1)  {
+      long long s = m[i1][j1][k1];
+      if (i>0) s-=m[i-1][j1][k1];
+      if (j>0) s-=m[i1][j-1][k1];
+      if (k>0) s-=m[i1][j1][k-1];
+      if (i>0 && j>0) s+=m[i-1][j-1][k1];
+      if (j>0 && k>0) s+=m[i1][j-1][k-1];
+      if (i>0 && k>0) s+=m[i-1][j1][k-1];
+      if (i>0 && j>0 && k>0) s-=m[i-1][j-1][k-1];
+      if (s>max_sum) max_sum = s;
+    }
+    printf("%lld\n",max_sum);
+    if(t)
+      cout<<endl;
+}
+return 0;
+}
