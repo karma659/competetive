@@ -1,0 +1,50 @@
+ // codegod
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(	vector<int> &val,	vector<int> &wt,int W,int n,vector<vector<int> > &memo);
+
+int main() {
+  
+  int test ;
+  cin >> test;
+  while(test--) {
+
+	int n,p;
+	cin>>n;
+	vector<int> val(n+1),wt(n+1);
+
+	for(int i=0;i<n;i++)
+     	cin>>val[i]>>wt[i];
+	cin>>p;
+
+	int sum=0;
+	for(int i=0;i<p;i++)
+	{
+		int W;
+	    cin>>W;
+	    vector<vector<int>> memo(n+1,vector<int> (W+1,-1));
+      sum+=solve(val,wt,W,n,memo);
+    
+  }
+    printf("%d\n",sum);
+    
+    
+}
+  return 0;
+}
+int solve(	vector<int> &val,	vector<int> &wt,int W,int n,vector<vector<int> > &memo)
+{
+	if(W==0||n==0)
+	   return 0;
+	   
+	if( memo[n][W]!=-1)
+	    return memo[n][W];
+	
+	if(wt[n-1]<=W)
+	  return memo[n][W]=max(val[n-1]+solve(val,wt,W-wt[n-1],n-1,memo),solve(val,wt,W,n-1,memo));
+	else
+	  return  memo[n][W]=solve(val,wt,W,n-1,memo);  
+	
+}
+
