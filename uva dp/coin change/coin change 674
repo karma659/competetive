@@ -1,0 +1,41 @@
+ // codegod
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+int coins[]={50,25,10,5,1};
+vector<vector<int>> dp(7490,vector<int> (6));
+
+int solve(int n,int sum){
+
+
+for(int i=1;i<=sum;i++)
+  dp[i][0]=0;
+
+for(int j=0;j<=n;j++)
+    dp[0][j]=1;
+
+
+for(int i=1;i<=sum;i++)for(int j=1;j<=n;j++)
+{
+	dp[i][j]=dp[i][j-1];
+	if(coins[j-1]<=i)
+	 dp[i][j]+=dp[i-coins[j-1]][j];
+	 
+}
+return dp[sum][n];
+}
+
+
+int main() {
+
+int s;
+  while(cin>>s) {
+   
+    printf("%d\n",solve(5,s));
+    
+  }
+  return 0;
+}
+
