@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+#define INF  (int)1e9
+#define EPS   1e-9
+#define MOD 1000000007ll
+#define fio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define ll long long
+#define PI pair<int,int>
+#define VI vector<int>
+#define VVI vector<VI>
+#define VVVI vector<VVI>
+#define VPI vector<PI>
+#define PB push_back
+#define PPB pop_back
+#define EB emplace_back
+#define MP make_pair
+#define F first
+#define S second
+#define uset unordered_set
+#define umap unordered_map
+#define MEM(a, b) memset(a, (b), sizeof(a))
+#define FOR(i, j, k, in) for (int i=j ; i<k ; i+=in)
+using namespace std;
+
+void solve(){
+
+}
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  ll test = 1;
+  cin >> test;
+  while(test--) {
+    solve();
+
+  }
+  return 0;
+}
+
