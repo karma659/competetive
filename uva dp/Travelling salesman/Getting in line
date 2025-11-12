@@ -48,7 +48,7 @@ int main()
                 bestStart = i;
             }
         }
-        int cur = bestStart;
+        int cur = bestStart ;
         int curState = 1<<bestStart;
         double totalFeet = 0;
         while(curState != ((1<<n)-1)){
